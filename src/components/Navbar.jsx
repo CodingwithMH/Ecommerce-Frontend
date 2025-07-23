@@ -78,7 +78,7 @@ const BASE_URI = import.meta.env.VITE_BACKEND_URI;
             </div>
           </nav>
 
-            <div className="relative md:hi">
+            <div className="relative md:hidden">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#535353]" />
               <input
                 type="text"
