@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import FiltersContext from '../Contexts/filtersContext'
+import FiltersContext from '../Contexts/FiltersContext'
 
 const CategoryCard = ({name,image,items}) => {
   const {setSelectedFilters}=useContext(FiltersContext);
