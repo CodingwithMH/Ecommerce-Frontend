@@ -3,7 +3,7 @@ import { Search, ShoppingCart, ChevronDown, LogOut, User } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import FiltersContext from "../Contexts/filtersContext";
+import FiltersContext from "../Contexts/FiltersContext";
 import { fetchProductsByFilters } from "../store/Product/productSlice";
 import { fetchUser, setToken, setUserDetails } from "../store/user/userSlice";
 import axios from "axios";
