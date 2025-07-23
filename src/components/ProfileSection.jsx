@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser } from '../store/User/userSlice';
+import { fetchUser } from '../store/user/userSlice';
 import axios from "axios";
 import { toast, ToastContainer,Flip } from "react-toastify";
 import {

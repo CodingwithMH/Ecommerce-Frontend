@@ -13,7 +13,7 @@ import PaymentContext, {
 } from "../Contexts/PaymentContext";
 import axios from "axios";
 import { Flip, toast, ToastContainer } from "react-toastify";
-import { clearCart } from "../store/Cart/cartSlice";
+import { clearCart } from "../store/cart/cartSlice";
 
 export default function Checkout() {
 const BASE_URI = process.env.BACKEND_URI;

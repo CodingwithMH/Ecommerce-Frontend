@@ -5,7 +5,7 @@ import { useState } from "react"
 import axios from "axios"
 import { ToastContainer,toast,Flip } from "react-toastify"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchUser, setToken } from "../store/User/userSlice"
+import { fetchUser, setToken } from "../store/user/userSlice"
 
 const Login=()=> {
 const BASE_URI = process.env.BACKEND_URI;

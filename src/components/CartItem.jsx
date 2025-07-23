@@ -1,7 +1,7 @@
 import React from 'react'
 import { Plus,Minus,Trash2 } from 'lucide-react'
 import { useDispatch } from 'react-redux'
-import { decreaseQuantity, increaseQuantity, removeProduct, updateQuantity } from '../store/Cart/cartSlice'
+import { decreaseQuantity, increaseQuantity, removeProduct, updateQuantity } from '../store/cart/cartSlice'
   const CartItem = ({ item }) => {
     const dispatch=useDispatch()
     return(

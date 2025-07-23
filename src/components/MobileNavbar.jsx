@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Sidebar from "./Sidebar"
 import axios from "axios"
-import { fetchUser, setToken, setUserDetails } from "../store/User/userSlice"
+import { fetchUser, setToken, setUserDetails } from "../store/user/userSlice"
 
 export default function MobileNavbar() {
 const BASE_URI = process.env.BACKEND_URI;
