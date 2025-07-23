@@ -11,7 +11,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast, ToastContainer,Flip } from "react-toastify";
 const Signup = () => {
-const BASE_URI = process.env.BACKEND_URI;
+const BASE_URI = process.env.REACT_APP_BACKEND_URI;
   const [data, setData] = useState({
     name: "",
     email: "",

@@ -12,7 +12,7 @@ import { Flip, toast, ToastContainer } from "react-toastify";
 import SettingsSection from "../components/SettingsSection";
 
 export default function Profile() {
-const BASE_URI = process.env.BACKEND_URI;
+const BASE_URI = process.env.REACT_APP_BACKEND_URI;
   const [activeTab, setActiveTab] = useState("profile");
   const { userDetails } = useSelector((state) => state.user);
   const [orders, setOrders] = useState([]);

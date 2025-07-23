@@ -8,7 +8,7 @@ import { fetchProductsByFilters } from "../store/Product/productSlice";
 import { fetchUser, setToken, setUserDetails } from "../store/user/userSlice";
 import axios from "axios";
 const Navbar = () => {
-const BASE_URI = process.env.BACKEND_URI;
+const BASE_URI = process.env.REACT_APP_BACKEND_URI;
   const location = useLocation();
   const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
