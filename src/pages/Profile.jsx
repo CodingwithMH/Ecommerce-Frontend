@@ -12,13 +12,13 @@ import { Flip, toast, ToastContainer } from "react-toastify";
 import SettingsSection from "../components/SettingsSection";
 
 export default function Profile() {
+const BASE_URI = process.env.BACKEND_URI;
   const [activeTab, setActiveTab] = useState("profile");
   const { userDetails } = useSelector((state) => state.user);
-  const navigate=useNavigate()
   const [orders, setOrders] = useState([]);
   const fetchOrders=async()=>{
     try {
-          const res = await axios.get("http://localhost:5000/order/my",
+          const res = await axios.get(`${BASE_URI}/order/my`,
             {
               withCredentials:true
             }

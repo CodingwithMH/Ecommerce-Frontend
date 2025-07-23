@@ -11,6 +11,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast, ToastContainer,Flip } from "react-toastify";
 const Signup = () => {
+const BASE_URI = process.env.BACKEND_URI;
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -25,7 +26,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", data,
+      const res = await axios.post(`${BASE_URI}/api/auth/register`, data,
         {
           withCredentials:true
         }

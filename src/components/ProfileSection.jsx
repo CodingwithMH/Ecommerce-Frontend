@@ -11,6 +11,7 @@ import {
   MapPin,
 } from "lucide-react"
   const ProfileSection = () => {
+const BASE_URI = process.env.BACKEND_URI;
   const [isEditing, setIsEditing] = useState(false)
     const { userDetails } = useSelector((state) => state.user);
       const dispatch=useDispatch()
@@ -150,7 +151,7 @@ transition={Flip}
                 onClick={async () => {
                       try {
                         const res=await axios.put(
-                          "http://localhost:5000/api/auth/update",
+                          `${BASE_URI}/api/auth/update`,
                           userProfile,
                           { withCredentials: true }
                         );

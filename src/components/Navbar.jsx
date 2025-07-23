@@ -8,6 +8,7 @@ import { fetchProductsByFilters } from "../store/Product/productSlice";
 import { fetchUser, setToken, setUserDetails } from "../store/user/userSlice";
 import axios from "axios";
 const Navbar = () => {
+const BASE_URI = process.env.BACKEND_URI;
   const location = useLocation();
   const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
@@ -131,7 +132,7 @@ const Navbar = () => {
                     onClick={async () => {
                       try {
                         await axios.post(
-                          "http://localhost:5000/api/auth/logout",
+                          `${BASE_URI}/api/auth/logout`,
                           {},
                           { withCredentials: true }
                         );

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchUser, setToken } from "../store/user/userSlice"
 
 const Login=()=> {
+const BASE_URI = process.env.BACKEND_URI;
   const navigate=useNavigate();
   const dispatch=useDispatch()
   const {token,userDetails}=useSelector((state)=>state.user);
@@ -22,7 +23,7 @@ const Login=()=> {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", data,
+      const res = await axios.post(`${BASE_URI}/api/auth/login`, data,
         {
           withCredentials: true,
         }

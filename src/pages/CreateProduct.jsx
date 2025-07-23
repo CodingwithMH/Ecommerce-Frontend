@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const CreateProductForm = () => {
+const BASE_URI = process.env.BACKEND_URI;
   const [formData, setFormData] = useState({
     name: "",
     price: "",
@@ -37,7 +38,7 @@ const CreateProductForm = () => {
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjg3NGY5NDZhMDA2MjM1N2FjYTk3MTQ4In0sImlhdCI6MTc1MjUxMjYxMX0.mQZUcEoJ2s1B3q9KZbOftH26fEdkeOsiZM3w6PONvek";
 
-      const response = await axios.post("http://localhost:5000/product/create", payload, {
+      const response = await axios.post(`${BASE_URI}/product/create`, payload, {
         headers: {
           "Content-Type": "multipart/form-data",
           "auth-token": token,

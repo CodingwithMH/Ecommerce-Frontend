@@ -9,6 +9,7 @@ import axios from "axios"
 import { fetchUser, setToken, setUserDetails } from "../store/user/userSlice"
 
 export default function MobileNavbar() {
+const BASE_URI = process.env.BACKEND_URI;
     const [isCartOpen, setIsCartOpen] = useState(false);
     const { totalQuantity } = useSelector((state) => state.cart);
     const location=useLocation()
@@ -121,7 +122,7 @@ export default function MobileNavbar() {
               onClick={async () => {
                                     try {
                                       await axios.post(
-                                        "http://localhost:5000/api/auth/logout",
+                                        `${BASE_URI}/api/auth/logout`,
                                         {},
                                         { withCredentials: true }
                                       );

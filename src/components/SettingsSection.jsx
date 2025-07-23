@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Flip, toast, ToastContainer } from "react-toastify";
 const SettingsSection = () => {
+const BASE_URI = process.env.BACKEND_URI;
     const {userDetails}=useSelector((state)=>state.user)
     const [showPasswordForm, setShowPasswordForm] = useState(false);
     const [currentPassword, setCurrentPassword] = useState("");
@@ -25,7 +26,7 @@ const SettingsSection = () => {
       }
 
       const res = await axios.put(
-        "http://localhost:5000/api/auth/update",data,
+        `${BASE_URI}/api/auth/update`,data,
         { withCredentials: true }
       );
       toast.success(res.data?.message || "Password updated successfully!");
@@ -115,7 +116,7 @@ const SettingsSection = () => {
                 onClick={async () => {
                   try {
                     const res = await axios.delete(
-                      "http://localhost:5000/api/auth/delete",
+                      `${BASE_URI}/api/auth/delete`,
                       { withCredentials: true }
                     );
                     toast.success(res.data?.message || "Deleted Successfully!");

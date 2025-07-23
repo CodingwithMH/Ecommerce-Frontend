@@ -1,11 +1,11 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+const BASE_URI = process.env.BACKEND_URI;
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (_,thunkAPI) => {
     try {
-      const response = await axios.get("http://localhost:5000/product/fetchall");
+      const response = await axios.get(`${BASE_URI}/product/fetchall`);
       console.log('first', response.data)
       return response.data;
     } catch (error) {
@@ -22,7 +22,7 @@ export const fetchProductsByFilters = createAsyncThunk(
       priceRange:filters.priceRange || undefined
     }
     try {
-      const response = await axios.get(`http://localhost:5000/product/fetch`,{params});
+      const response = await axios.get(`${BASE_URI}/product/fetch`,{params});
       console.log('first', response.data)
       return response.data;
     } catch (error) {
@@ -34,7 +34,7 @@ export const fetchProductByID = createAsyncThunk(
   "products/fetchProductById",
   async ({id},thunkAPI) => {
     try {
-      const response = await axios.get(`http://localhost:5000/product/fetch/${id}`);
+      const response = await axios.get(`${BASE_URI}/product/fetch/${id}`);
       console.log('product', response.data)
       return response.data;
     } catch (error) {
@@ -46,7 +46,7 @@ export const fetchProductByCategory = createAsyncThunk(
   "products/fetchProductByCategory",
   async ({category},thunkAPI) => {
     try {
-      const response = await axios.get(`http://localhost:5000/product/fetchrelated/${category}`);
+      const response = await axios.get(`${BASE_URI}/product/fetchrelated/${category}`);
       console.log('product', response.data)
       return response.data;
     } catch (error) {

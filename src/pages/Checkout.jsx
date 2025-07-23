@@ -16,6 +16,7 @@ import { Flip, toast, ToastContainer } from "react-toastify";
 import { clearCart } from "../store/cart/cartSlice";
 
 export default function Checkout() {
+const BASE_URI = process.env.BACKEND_URI;
   const dispatch = useDispatch();
   const { products, totalQuantity, totalPrice, shipping, total } = useSelector(
     (state) => state.cart
@@ -33,7 +34,7 @@ export default function Checkout() {
     };
     try {
       const res = await axios.post(
-        "http://localhost:5000/order/create",
+        `${BASE_URI}/order/create`,
         order,
         {
           withCredentials: true,
