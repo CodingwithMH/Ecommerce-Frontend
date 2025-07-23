@@ -3,7 +3,7 @@ import { Star, ShoppingCart } from 'lucide-react'
 import Skeleton from 'react-loading-skeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addProduct } from '../store/cart/cartSlice'
+import { addProduct } from '../store/Cart/cartSlice'
 
 const ProductCard = ({ product }) => {
   const dispatch=useDispatch();
