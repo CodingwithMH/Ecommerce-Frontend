@@ -16,7 +16,7 @@ import ProductListItem from "../components/ProductListItem"
 import Footer from "../components/Footer"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProducts, fetchProductsByFilters } from "../store/Product/productSlice"
-import FiltersContext from "../Contexts/filtersContext"
+import FiltersContext from "../Contexts/FiltersContext"
 
 const Shop=()=> {
   
