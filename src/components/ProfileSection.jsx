@@ -11,7 +11,7 @@ import {
   MapPin,
 } from "lucide-react"
   const ProfileSection = () => {
-const BASE_URI = process.env.REACT_APP_BACKEND_URI;
+const BASE_URI = import.meta.env.VITE_BACKEND_URI;
   const [isEditing, setIsEditing] = useState(false)
     const { userDetails } = useSelector((state) => state.user);
       const dispatch=useDispatch()

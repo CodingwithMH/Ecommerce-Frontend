@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchUser, setToken } from "../store/user/userSlice"
 
 const Login=()=> {
-const BASE_URI = process.env.REACT_APP_BACKEND_URI;
+const BASE_URI = import.meta.env.VITE_BACKEND_URI;
   const navigate=useNavigate();
   const dispatch=useDispatch()
   const {token,userDetails}=useSelector((state)=>state.user);

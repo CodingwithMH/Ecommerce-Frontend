@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Flip, toast, ToastContainer } from "react-toastify";
 const SettingsSection = () => {
-const BASE_URI = process.env.REACT_APP_BACKEND_URI;
+const BASE_URI = import.meta.env.VITE_BACKEND_URI;
     const {userDetails}=useSelector((state)=>state.user)
     const [showPasswordForm, setShowPasswordForm] = useState(false);
     const [currentPassword, setCurrentPassword] = useState("");

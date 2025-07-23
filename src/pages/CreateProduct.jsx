@@ -3,7 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const CreateProductForm = () => {
-const BASE_URI = process.env.REACT_APP_BACKEND_URI;
+const BASE_URI = import.meta.env.VITE_BACKEND_URI;
   const [formData, setFormData] = useState({
     name: "",
     price: "",

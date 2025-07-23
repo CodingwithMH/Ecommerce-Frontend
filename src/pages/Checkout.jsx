@@ -16,7 +16,7 @@ import { Flip, toast, ToastContainer } from "react-toastify";
 import { clearCart } from "../store/cart/cartSlice";
 
 export default function Checkout() {
-const BASE_URI = process.env.REACT_APP_BACKEND_URI;
+const BASE_URI = import.meta.env.VITE_BACKEND_URI;
   const dispatch = useDispatch();
   const { products, totalQuantity, totalPrice, shipping, total } = useSelector(
     (state) => state.cart

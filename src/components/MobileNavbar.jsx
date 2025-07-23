@@ -9,7 +9,7 @@ import axios from "axios"
 import { fetchUser, setToken, setUserDetails } from "../store/user/userSlice"
 
 export default function MobileNavbar() {
-const BASE_URI = process.env.REACT_APP_BACKEND_URI;
+const BASE_URI = import.meta.env.VITE_BACKEND_URI;
     const [isCartOpen, setIsCartOpen] = useState(false);
     const { totalQuantity } = useSelector((state) => state.cart);
     const location=useLocation()
