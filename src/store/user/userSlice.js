@@ -13,6 +13,7 @@ export const fetchUser = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
+      console.log('first', error.response?.data)
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
