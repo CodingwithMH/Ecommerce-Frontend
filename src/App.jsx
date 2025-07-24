@@ -15,6 +15,7 @@ import ShippingContext from './Contexts/ShippingContext'
 import PaymentContext, { PaymentCardContext, PaymentMethodContext } from './Contexts/PaymentContext'
 import Profile from './pages/Profile'
 import MobileNavbar from './components/MobileNavbar'
+import ScrollToTop from './ScrollToTop'
 function App() {
   const [paymentInformation, setPaymentInformation] = useState({
       cardNumber: "",
@@ -53,6 +54,7 @@ function App() {
     <FiltersContext.Provider value={{selectedFilters,setSelectedFilters}}>
       <ShippingContext.Provider value={{shippingInformation,setShippingInformation}}>
     <BrowserRouter>
+    <ScrollToTop/>
     <Navbar/>
     <MobileNavbar/>
     <main className='max-w-screen h-auto md:overflow-hidden'>

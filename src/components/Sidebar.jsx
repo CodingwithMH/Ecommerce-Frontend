@@ -119,7 +119,10 @@ export default function Sidebar({ isOpen, onClose }) {
 
                 {/* Action Buttons */}
                 <div className="space-y-3">
-                  <Link to={'/checkout'} className="block w-full bg-[#e8e810] hover:bg-[#eaea28] text-[#313131] font-bold py-3 rounded-lg text-lg text-center">
+                  <Link 
+                  to={'/checkout'} 
+                  onClick={onClose}
+                  className="block w-full bg-[#e8e810] hover:bg-[#eaea28] text-[#313131] font-bold py-3 rounded-lg text-lg text-center">
                     Checkout - Rs. {total.toFixed(2)}
                   </Link>
                   <button

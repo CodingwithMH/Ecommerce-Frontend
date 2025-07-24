@@ -10,6 +10,8 @@ import Cart from "../assets/images/cart.svg";
 import axios from "axios";
 import { useState } from "react";
 import { toast, ToastContainer,Flip } from "react-toastify";
+import { useEffect } from "react";
+import Aos from "aos";
 const Signup = () => {
 const BASE_URI =import.meta.env.VITE_BACKEND_URI;
   const [data, setData] = useState({
@@ -46,6 +48,11 @@ const BASE_URI =import.meta.env.VITE_BACKEND_URI;
       console.error("Error:", resp || 'Error Occured');
     }
   };
+  useEffect(()=>{
+    Aos.init({
+      duration:2000
+    })
+  },[])
 
   return (
     <>
@@ -65,7 +72,7 @@ transition={Flip}
         <div className="absolute top-64 left-[40%] w-10 h-10 bg-[#e8e810] rotate-[30deg]"></div>
         <div className="absolute bottom-1/2 -left-28 w-96 h-96 bg-[#f6f6f6] rounded-full"></div>
         {/* Sign Up Form */}
-        <div className="bg-white rounded-3xl sm:p-8 shadow-lg border border-gray-200 w-full max-w-md relative z-10 mx-auto md:ml-16 p-5">
+        <div data-aos="flip-left" className="bg-white rounded-3xl sm:p-8 shadow-lg border border-gray-200 w-full max-w-md relative z-10 mx-auto md:ml-16 p-5">
           {/* Decorative yellow circle inside form */}
           <div className="absolute top-16 left-8 w-16 h-16 bg-[#eaea28] rounded-full blur-md opacity-60"></div>
           <div className="absolute bottom-16 left-12 w-12 h-12 bg-[#f3f39b] rounded-full blur-md opacity-40"></div>

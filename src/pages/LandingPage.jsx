@@ -14,6 +14,7 @@ import { fetchProducts } from "../store/Product/productSlice"
 import ProductCard from "../components/ProductCard"
 import { toast, ToastContainer,Flip } from 'react-toastify';
 import emailjs from 'emailjs-com';
+import Aos from "aos"
 export default function LandingPage() {
   const {loading,products,error}=useSelector((state)=>state.products)
   const dispatch=useDispatch()
@@ -44,6 +45,11 @@ export default function LandingPage() {
         }
       );
   };
+    useEffect(()=>{
+      Aos.init({
+        duration:2000
+      })
+    },[])
   return (
     <>
     <ToastContainer
@@ -62,16 +68,16 @@ transition={Flip}
         <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-[#f3f39b] rounded-full blur-sm opacity-50"></div>
 
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-bold text-[#313131] mb-6">
+          <h1 data-aos="fade-down" className="text-5xl md:text-7xl font-bold text-[#313131] mb-6">
             Shop Smart,
             <br />
             <span className="text-[#313131]">Live Better</span>
           </h1>
-          <p className="text-xl text-[#535353] mb-8 max-w-2xl mx-auto">
+          <p data-aos="fade-down" className="text-xl text-[#535353] mb-8 max-w-2xl mx-auto">
             Discover amazing products at unbeatable prices. Your one-stop destination for everything you need.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to={'/shop'} className="bg-[#e8e810] hover:bg-[#eaea28] text-[#313131] font-bold px-8 py-4 rounded-lg text-lg flex items-center gap-2">
+            <Link data-aos="fade-up" to={'/shop'} className="bg-[#e8e810] hover:bg-[#eaea28] justify-center text-[#313131] font-bold px-8 py-4 rounded-lg text-lg flex items-center gap-2">
               <span>
                 Start Shopping
               </span>
@@ -85,7 +91,7 @@ transition={Flip}
       <section className="px-6 py-16">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-[#313131] text-center mb-12">Popular Categories</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { name: "Electronics", image: Image1, items: "1,200+ items" },
               { name: "Furniture", image: Image2, items: "2,500+ items" },
@@ -104,7 +110,7 @@ transition={Flip}
       <section className="px-6 py-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-[#313131] text-center mb-12">Trending Products</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div data-aos="fade-up" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {loading
         ? Array.from({ length: 4 }).map((_, idx) => (
             <ProductCard key={idx} product={{}} />
@@ -126,7 +132,7 @@ transition={Flip}
 
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-[#313131] text-center mb-12">Why Choose SHOPICART?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: <Truck className="w-12 h-12 text-[#313131]" />,
@@ -156,7 +162,7 @@ transition={Flip}
 
       {/* Newsletter Section */}
       <section className="px-6 py-16 bg-[#ebeb56]">
-        <div className="max-w-4xl mx-auto text-center">
+        <div data-aos="fade-up" className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-[#313131] mb-4">Stay Updated with Our Latest Deals</h2>
           <p className="text-[#535353] mb-8 text-lg">
             Subscribe to our newsletter and never miss out on exclusive offers and new arrivals.
