@@ -15,6 +15,7 @@ import ProductCard from "../components/ProductCard"
 import { toast, ToastContainer,Flip } from 'react-toastify';
 import emailjs from 'emailjs-com';
 import Aos from "aos"
+import "aos/dist/aos.css";
 export default function LandingPage() {
   const {loading,products,error}=useSelector((state)=>state.products)
   const dispatch=useDispatch()

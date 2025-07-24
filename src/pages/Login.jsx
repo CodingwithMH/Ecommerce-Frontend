@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchUser, setToken } from "../store/user/userSlice"
 import Aos from "aos"
 import { useEffect } from "react"
+import "aos/dist/aos.css";
 
 const Login=()=> {
 const BASE_URI = import.meta.env.VITE_BACKEND_URI;

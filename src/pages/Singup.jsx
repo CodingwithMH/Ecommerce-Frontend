@@ -12,6 +12,7 @@ import { useState } from "react";
 import { toast, ToastContainer,Flip } from "react-toastify";
 import { useEffect } from "react";
 import Aos from "aos";
+import "aos/dist/aos.css";
 const Signup = () => {
 const BASE_URI =import.meta.env.VITE_BACKEND_URI;
   const [data, setData] = useState({
