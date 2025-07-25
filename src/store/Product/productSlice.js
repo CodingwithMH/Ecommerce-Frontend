@@ -6,7 +6,6 @@ export const fetchProducts = createAsyncThunk(
   async (_,thunkAPI) => {
     try {
       const response = await axios.get(`${BASE_URI}/product/fetchall`);
-      console.log('first', response.data)
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data.error || error.message);
@@ -23,7 +22,6 @@ export const fetchProductsByFilters = createAsyncThunk(
     }
     try {
       const response = await axios.get(`${BASE_URI}/product/fetch`,{params});
-      console.log('first', response.data)
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data.error || error.message);
@@ -35,7 +33,6 @@ export const fetchProductByID = createAsyncThunk(
   async ({id},thunkAPI) => {
     try {
       const response = await axios.get(`${BASE_URI}/product/fetch/${id}`);
-      console.log('product', response.data)
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data.message || error.message);
@@ -47,7 +44,6 @@ export const fetchProductByCategory = createAsyncThunk(
   async ({category},thunkAPI) => {
     try {
       const response = await axios.get(`${BASE_URI}/product/fetchrelated/${category}`);
-      console.log('product', response.data)
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data.message || error.message);

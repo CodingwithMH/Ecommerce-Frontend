@@ -16,6 +16,73 @@ import Skeleton from "react-loading-skeleton";
 import { addProductByQuantity } from "../store/cart/cartSlice";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
+import axios from "axios";
+import { Flip, toast, ToastContainer } from "react-toastify";
+const BASE_URI = import.meta.env.VITE_BACKEND_URI;
+const Rating = ({
+  showModal,
+  setShowModal,
+  rating,
+  setRating,
+  comment,
+  setComment,
+  handleSubmit
+}) => {
+  if (!showModal) return null;
+
+  return (
+    <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
+      <div className="bg-white rounded-lg shadow w-full max-w-md p-6">
+        <div className="flex justify-between items-center border-b pb-2 mb-4">
+          <h3 className="text-xl font-semibold text-gray-900">Rate Your Experience</h3>
+          <button
+            onClick={() => setShowModal(false)}
+            className="text-gray-400 hover:text-gray-900"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className="flex justify-center space-x-2 text-2xl mb-4">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              className={`cursor-pointer ${rating >= star ? 'text-yellow-400' : 'text-gray-300'}`}
+              onClick={() => setRating(star)}
+            >
+              ★
+            </span>
+          ))}
+        </div>
+
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder="Leave your comment here..."
+          className="w-full h-24 p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+        ></textarea>
+
+        <div className="flex justify-end space-x-2">
+          <button
+            onClick={() => setShowModal(false)}
+            className="px-4 py-2 rounded bg-gray-200 text-gray-800 hover:bg-gray-300"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={async () => {
+              await handleSubmit();
+              setShowModal(false);
+            }}
+            className="px-4 py-2 rounded bg-[#e8e810] hover:bg-[#e8e810b7]"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
@@ -40,8 +107,45 @@ export default function ProductDetailsPage() {
     }
   };
 
+    const [showModal, setShowModal] = useState(false);
+  const [rating, setRating] = useState(0);
+const [comment, setComment] = useState('');
+ const handleSubmit = async () => {
+    if (rating === 0) {
+      alert('Please select a rating.');
+      return;}
+    try {
+      const res = await axios.post(`${BASE_URI}/product/rate/${id}`, {star:rating,comment:comment},
+        {
+          withCredentials: true,
+        }
+      );
+      toast.success(res.data);
+      setComment('');
+      setRating(0);
+
+    } catch (err) {
+      console.error("Error:", err || "Something went wrong");
+    }
+    }
+
   return (
     <>
+<Rating
+  showModal={showModal}
+  setShowModal={setShowModal}
+  rating={rating}
+  setRating={setRating}
+  comment={comment}
+  setComment={setComment}
+  handleSubmit={handleSubmit}
+/>
+<ToastContainer
+position="top-center"
+autoClose={3000}
+theme="light"
+transition={Flip}
+/>
     <div className="min-h-screen bg-[#f6f6f6] py-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
@@ -106,7 +210,7 @@ export default function ProductDetailsPage() {
                         <Star
                           key={i}
                           className={`w-5 h-5 ${
-                            i < Math.floor(productById.ratings)
+                            i < Math.floor(productById.ratings.reduce((acc,rt)=>acc+rt.star,0)/productById.ratings.length)
                               ? "text-[#e8e810] fill-current"
                               : "text-gray-300"
                           }`}
@@ -192,14 +296,16 @@ loading || !productById ? <Skeleton width={20} height={20}/>:
                   </>):
                   <div className="space-y-3">
                     <button
-                      onClick={() =>
+                      onClick={() =>{
                         dispatch(
                           addProductByQuantity({
                             product: productById,
                             quantity: quantity,
                           })
                         )
+                        setShowModal(true);
                       }
+                    }
                       className="w-full flex justify-center items-center gap-5 bg-[#e8e810] hover:bg-[#eaea28] text-[#313131] font-bold py-4 rounded-lg text-lg"
                     >
                       <ShoppingCart className="w-5 h-5 mr-2" />
@@ -271,8 +377,8 @@ loading || !productById ? <Skeleton width={20} height={20}/>:
               You Might Also Like
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedProducts.slice(0,4).map((relatedProduct) => (
-                <ProductCard product={relatedProduct}/>
+              {relatedProducts.slice(0,4).map((relatedProduct,ind) => (
+                <ProductCard key={ind} product={relatedProduct}/>
               ))}
             </div>
           </div>

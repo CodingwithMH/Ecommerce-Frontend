@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
-import { Star, ShoppingCart } from 'lucide-react'
-import Skeleton from 'react-loading-skeleton'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { addProduct } from '../store/cart/cartSlice'
+import React, { useState } from "react";
+import { Star, ShoppingCart } from "lucide-react";
+import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { addProduct } from "../store/cart/cartSlice";
 
 const ProductCard = ({ product }) => {
-  const dispatch=useDispatch();
-  const { loading } = useSelector((state) => state.products)
-  const [showText,setShowText]=useState(false);
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.products);
+  const [showText, setShowText] = useState(false);
   return (
-    <Link to={`${product._id ?('/product/'+product._id):'#'}`} className="bg-white hover:shadow-lg transition-shadow cursor-pointer group rounded-md overflow-hidden">
+    <Link
+      to={`${product._id ? "/product/" + product._id : "#"}`}
+      className="bg-white hover:shadow-lg transition-shadow cursor-pointer group rounded-md overflow-hidden"
+    >
       <div className="p-4">
         {/* Image Section */}
         <div className="relative overflow-hidden rounded-lg mb-4">
@@ -32,19 +35,23 @@ const ProductCard = ({ product }) => {
           )}
 
           {/* Cart Button */}
-          {!loading && <div className="absolute top-2 right-2">
-            <button
-            onMouseEnter={()=>setShowText(true)}
-            onMouseLeave={()=>setShowText(false)}
-            onClick={(e)=>{
-              e.preventDefault();
-              e.stopPropagation();
-              dispatch(addProduct(product));
-              }} className="bg-white transition-all hover:flex hover:items-center hover:bg-[#ebeb56] text-[#313131] p-2 rounded-full shadow-md">
-              {showText && <span className='font-semibold'>Add to Cart</span>}
-              <ShoppingCart className="w-4 h-4" />
-            </button>
-          </div>}
+          {!loading && (
+            <div className="absolute top-2 right-2">
+              <button
+                onMouseEnter={() => setShowText(true)}
+                onMouseLeave={() => setShowText(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  dispatch(addProduct(product));
+                }}
+                className="bg-white transition-all hover:flex hover:items-center hover:bg-[#ebeb56] text-[#313131] p-2 rounded-full shadow-md"
+              >
+                {showText && <span className="font-semibold">Add to Cart</span>}
+                <ShoppingCart className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Text Info */}
@@ -53,7 +60,9 @@ const ProductCard = ({ product }) => {
           {loading ? (
             <Skeleton height={20} width={`80%`} />
           ) : (
-            <h3 className="font-semibold text-[#313131] line-clamp-2">{product.name}</h3>
+            <h3 className="font-semibold text-[#313131] line-clamp-2">
+              {product.name}
+            </h3>
           )}
 
           {/* Rating */}
@@ -73,7 +82,9 @@ const ProductCard = ({ product }) => {
             {loading ? (
               <Skeleton height={16} width={30} />
             ) : (
-              <span className="text-sm text-[#535353]">({product.ratings.length})</span>
+              <span className="text-sm text-[#535353]">
+                ({product.ratings.length})
+              </span>
             )}
           </div>
 
@@ -82,16 +93,20 @@ const ProductCard = ({ product }) => {
             {loading ? (
               <Skeleton height={24} width={60} />
             ) : (
-              <span className="text-xl font-bold text-[#313131]">Rs. {product.price}</span>
+              <span className="text-xl font-bold text-[#313131]">
+                Rs. {product.price}
+              </span>
             )}
             {!loading && product.originalPrice > product.price && (
-              <span className="text-sm text-[#535353] line-through">Rs. {product.originalPrice}</span>
+              <span className="text-sm text-[#535353] line-through">
+                Rs. {product.originalPrice}
+              </span>
             )}
           </div>
         </div>
       </div>
     </Link>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

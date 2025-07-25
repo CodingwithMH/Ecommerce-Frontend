@@ -66,7 +66,6 @@ function App() {
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='product/:id' element={<ProductDetailsPage/>}/>
-        <Route path='createproduct' element={<CreateProductForm/>}/>
       </Routes>
     </main>
     </BrowserRouter>
