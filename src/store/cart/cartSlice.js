@@ -48,7 +48,7 @@ recalculateTotals(state);
     },
 
     removeProduct(state, action) {
-      const id = action.payload._id;
+      const id = action.payload.id;
       // const existing = state.products.find((p) => p._id === id);
       if (existing) {
         // state.totalQuantity -= existing.quantity;

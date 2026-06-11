@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Search, ShoppingCart, ChevronDown, LogOut, User } from "lucide-react";
+import { Search, ShoppingCart, ChevronDown, LogOut, User, Heart } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import FiltersContext from "../Contexts/FiltersContext";
 import { fetchProductsByFilters } from "../store/Product/productSlice";
 import { fetchUser, setToken, setUserDetails } from "../store/user/userSlice";
 import axios from "axios";
+import { fetchWishlist } from "../store/wishlist/wishlistSlice";
 const Navbar = () => {
 const BASE_URI = import.meta.env.VITE_BACKEND_URI;
   const location = useLocation();
@@ -15,7 +16,9 @@ const BASE_URI = import.meta.env.VITE_BACKEND_URI;
   const [showDropdown1, setShowDropdown1] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { selectedFilters, setSelectedFilters } = useContext(FiltersContext);
+  const [wishlistLength,setWishlistLength]=useState(0);
   const { totalQuantity } = useSelector((state) => state.cart);
+  const { wishlisted_products } = useSelector((state) => state.wishlist);
   const { userDetails } = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(fetchProductsByFilters({ filters: selectedFilters }));
@@ -23,6 +26,12 @@ const BASE_URI = import.meta.env.VITE_BACKEND_URI;
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
+  useEffect(() => {
+  dispatch(fetchWishlist());
+}, []);
+  useEffect(()=>{
+    setWishlistLength(wishlisted_products.length);
+  },[wishlisted_products])
   return (
     <>
       <header className="bg-[#ebeb56] px-6 py-2 sticky max-w-screen z-20 top-0">
@@ -107,6 +116,16 @@ const BASE_URI = import.meta.env.VITE_BACKEND_URI;
                 </span>
               )}
             </button>
+            {userDetails && (<Link to={'/wishlist'}
+              className="relative text-black hover:opacity-80 transition-opacity"
+            >
+              <Heart className="w-6 h-6" />
+              {wishlistLength >= 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#313131] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {wishlistLength > 9 ? "9+" : wishlistLength}
+                </span>
+              )}
+            </Link>)}
             {userDetails ? (
               <div
                 className="relative"

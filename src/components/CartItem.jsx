@@ -1,4 +1,3 @@
-import React from 'react'
 import { Plus,Minus,Trash2 } from 'lucide-react'
 import { useDispatch } from 'react-redux'
 import { decreaseQuantity, increaseQuantity, removeProduct, updateQuantity } from '../store/cart/cartSlice'
@@ -49,7 +48,7 @@ import { decreaseQuantity, increaseQuantity, removeProduct, updateQuantity } fro
             <button
               variant="ghost"
               size="sm"
-              onClick={() => {dispatch(removeProduct(item))}}
+              onClick={() => {dispatch(removeProduct({id: item._id}))}}
               className="text-[#535353] hover:text-red-500 hover:bg-red-50 p-1 h-8 w-8"
             >
               <Trash2 className="w-3 h-3" />

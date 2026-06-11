@@ -16,6 +16,9 @@ import PaymentContext, { PaymentCardContext, PaymentMethodContext } from './Cont
 import Profile from './pages/Profile'
 import MobileNavbar from './components/MobileNavbar'
 import ScrollToTop from './ScrollToTop'
+import Wishlist from './pages/Wishlist'
+import RagUpload from './pages/AddRag'
+import Chatbot from './components/Chatbot'
 function App() {
   const [paymentInformation, setPaymentInformation] = useState({
       cardNumber: "",
@@ -58,14 +61,17 @@ function App() {
     <Navbar/>
     <MobileNavbar/>
     <main className='max-w-screen h-auto md:overflow-hidden'>
+      <Chatbot />
       <Routes>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/rag-upload' element={<RagUpload/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/shop' element={<Shop/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='product/:id' element={<ProductDetailsPage/>}/>
+        <Route path='/wishlist' element={<Wishlist/>}/>
       </Routes>
     </main>
     </BrowserRouter>

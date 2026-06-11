@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Star, ShoppingCart } from "lucide-react";
+import { Star, ShoppingCart, Heart } from "lucide-react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addProduct } from "../store/cart/cartSlice";
+import { addToWishlist } from "../store/wishlist/wishlistSlice";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -31,6 +32,22 @@ const ProductCard = ({ product }) => {
           {!loading && product.stock === 0 && (
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
               <span className="text-white font-bold">Out of Stock</span>
+            </div>
+          )}
+
+          {/* Wishlist Button */}
+          {!loading && (
+            <div className="absolute top-2 left-2">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  dispatch(addToWishlist(product));
+                }}
+                className="bg-white transition-all hover:flex hover:items-center hover:bg-[#ebeb56] text-[#313131] p-2 rounded-full shadow-md"
+              >
+                <Heart className="w-4 h-4" />
+              </button>
             </div>
           )}
 
